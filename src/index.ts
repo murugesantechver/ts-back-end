@@ -1,15 +1,19 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import connectDB from './config/db';
-
 import dotenv from 'dotenv';
+import { loadEnvironment } from './utils/core.utils';
 dotenv.config();
+
+loadEnvironment();
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
 
 connectDB();
-app.use(cors());app.use(express.json());
+app.use(cors());
+
+app.use(express.json());
 
 app.get('/test', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express and MongoDB!');
