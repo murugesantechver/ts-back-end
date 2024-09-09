@@ -7,6 +7,8 @@
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "moduleResolution": "node",
       "forceConsistentCasingInFileNames": true,
       "typeRoots": ["node_modules/@types"]
     },
