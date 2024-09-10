@@ -15,10 +15,10 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get('/test', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript with Express and MongoDB!');
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on ${process.env.NODE_ENV === 'production' ? 'https://ts-back-end.onrender.com' : 'http://localhost'}:${port}`);
 });
