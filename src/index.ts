@@ -20,5 +20,5 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on ${process.env.NODE_ENV === 'production' ? 'https://ts-back-end.onrender.com' : 'http://localhost'}:${port}`);
+  console.log(`Server is running on ${process.env.NODE_ENV === 'production' ? 'https://ts-back-end.onrender.com' : `http://localhost:${port}`}`);
 });
