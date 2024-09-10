@@ -2,16 +2,10 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import connectDB from './config/db';
 import dotenv from 'dotenv';
-//import { loadEnvironment } from './utils/core.utils';
+import { loadEnvironment } from './utils/core.utils';
 dotenv.config();
 
-if (process.env.NODE_ENV === 'production') {
-  dotenv.config({ path: '.env.prod' });
-} else {
-  dotenv.config({ path: '.env.dev' });
-}
-
-//loadEnvironment();
+loadEnvironment();
 
 const app: Application = express();
 const port = process.env.PORT || 3000;

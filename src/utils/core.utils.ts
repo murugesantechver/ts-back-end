@@ -1,4 +1,4 @@
-/* import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 export function loadEnvironment() {
   if (process.env.NODE_ENV === 'production') {
@@ -7,4 +7,3 @@ export function loadEnvironment() {
     dotenv.config({ path: '.env.dev' });
   }
 }
- */
