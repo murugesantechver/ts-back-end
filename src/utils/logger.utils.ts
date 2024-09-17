@@ -32,10 +32,7 @@ export const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-if (
-  process.env.NODE_ENV === NodeEnv.PROD ||
-  process.env.NODE_ENV === NodeEnv.STAGE
-) {
+if (process.env.NODE_ENV === NodeEnv.PROD) {
   const prodConfig = new winston.transports.Console({
     format: formatter(),
     level: 'warn',
