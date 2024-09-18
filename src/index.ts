@@ -6,6 +6,7 @@ import { loadEnvironment } from './utils/core.utils';
 import { userRouter } from './routes/user-router';
 import Http, { Server } from 'http';
 import { logger } from './utils/logger.utils';
+import { NodeEnv } from './types/enums';
 
 dotenv.config();
 
@@ -72,6 +73,6 @@ function onListening(server: Server): void {
   if (!addr) return;
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   logger.info(
-    `Server running as ${process.env.NODE_ENV === 'production' ? 'Production' : 'Development'} mode on ${bind}.`
+    `Server running as ${process.env.NODE_ENV === NodeEnv.PROD ? NodeEnv.PROD : NodeEnv.DEV} mode on ${bind}.`
   );
 }
