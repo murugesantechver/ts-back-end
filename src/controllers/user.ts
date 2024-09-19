@@ -9,3 +9,9 @@ export const userLogin = async (req: Request, res: Response): Promise<void> => {
   res.json(savedUser);
   return;
 };
+
+export const getUsers = async (req: Request, res: Response): Promise<void> => {
+  const users = await userCollection.find();
+  res.json(users);
+  return;
+};
