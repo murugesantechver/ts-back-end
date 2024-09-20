@@ -7,6 +7,7 @@ import { userRouter } from './routes/user-router';
 import Http, { Server } from 'http';
 import { logger } from './utils/logger.utils';
 import { NodeEnv } from './types/enums';
+import { createClient } from 'redis';
 
 dotenv.config();
 
@@ -24,6 +25,32 @@ const corsAllowSubdomains = (
 };
 
 connectDB();
+
+const redisHost = process.env.REDIS_HOST;
+const redisPort = parseInt(process.env.REDIS_PORT as string, 10);
+const redisPassword =
+  process.env.NODE_ENV === NodeEnv.PROD
+    ? process.env.REDIS_PASSWORD_LIVE
+    : process.env.REDIS_PASSWORD_LOCAL || undefined;
+
+const redisClient = createClient({
+  socket: {
+    host: redisHost,
+    port: redisPort,
+  },
+  password: redisPassword,
+});
+
+redisClient
+  .connect()
+  .then(() => {
+    logger.info(`Connected to Redis on ${redisHost}:${redisPort}`);
+  })
+  .catch((err) => {
+    logger.error('Redis connection error:', err);
+  });
+
+export { redisClient };
 
 app.use(express.urlencoded({ extended: false }));
 app.use(corsAllowSubdomains);
