@@ -1,12 +1,19 @@
 import { IRouter, Router } from 'express';
-import { getUsers, redisSample, userLogin } from '../controllers/user';
+import {
+  getUsers,
+  /* redisSample, */
+  userLogin,
+  userRegister,
+} from '../controllers/user';
+import { verifyToken } from '../middleware/authMiddleware';
 
 export const userRouter = (): IRouter => {
   const router: IRouter = Router();
 
-  router.get('/login', userLogin);
-  router.get('/all', getUsers);
-  router.get('/redis', redisSample);
+  router.post('/register', userRegister);
+  router.post('/login', userLogin);
+  router.get('/all', verifyToken, getUsers);
+  // router.get('/redis', redisSample);
 
   return router;
 };
